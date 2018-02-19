@@ -1,6 +1,8 @@
 import pyaudio
 import wave
 import speech_recognition as sr
+import subprocess
+import os
 def play_audio(filename):
     chunk=1024
     wv=wave.open(filename,"rb")
@@ -36,4 +38,8 @@ def initSpeech():
 
     print(command)
 
-initSpeech()
+def SpeakBack(text):
+   os.chdir("C:\Program Files\Jampal")
+   os.popen("ptts -u r'''C:\Users\cubastion\Desktop\Test.txt''' ")
+
+SpeakBack("Hello")
