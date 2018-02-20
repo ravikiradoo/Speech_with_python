@@ -36,10 +36,15 @@ def initSpeech():
     except:
         print("Error")
 
-    print(command)
+    SpeakBack(command)
 
 def SpeakBack(text):
    os.chdir("C:\Program Files\Jampal")
-   os.popen("ptts -u r'''C:\Users\cubastion\Desktop\Test.txt''' ")
+   file=open(r"C:\Users\cubastion\PycharmProjects\Speech_with_python\Text.txt","w+")
+   file.write(text)
+   os.popen("ptts -u "+ r"C:\Users\cubastion\PycharmProjects\Speech_with_python\Text.txt")
 
-SpeakBack("Hello")
+
+
+
+
