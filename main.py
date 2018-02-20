@@ -3,6 +3,8 @@ import wave
 import speech_recognition as sr
 import subprocess
 import os
+from commands import Commander
+
 def play_audio(filename):
     chunk=1024
     wv=wave.open(filename,"rb")
@@ -20,12 +22,14 @@ def play_audio(filename):
     pa.terminate()
 
 r=sr.Recognizer()
+cmd=Commander()
+running=True
 
 def initSpeech():
     play_audio("Audio/sms-alert-5-daniel_simon.wav")
 
     with sr.Microphone() as source:
-        print("Hello")
+        print("Listening.......")
         audio=r.listen(source)
 
         play_audio("Audio/sms-alert-5-daniel_simon.wav")
@@ -35,14 +39,18 @@ def initSpeech():
         command=r.recognize_google(audio)
     except:
         print("Error")
+    if command in ["quit","good bye" , "ok bye", "exit"]:
+        global running
+        running=False
+    else:
+        cmd.Discover(command)
 
-    SpeakBack(command)
 
-def SpeakBack(text):
-   os.chdir("C:\Program Files\Jampal")
-   file=open(r"C:\Users\cubastion\PycharmProjects\Speech_with_python\Text.txt","w+")
-   file.write(text)
-   os.popen("ptts -u "+ r"C:\Users\cubastion\PycharmProjects\Speech_with_python\Text.txt")
+
+
+
+
+
 
 
 
