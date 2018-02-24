@@ -38,7 +38,8 @@ def initSpeech():
     try:
         command=r.recognize_google(audio)
     except:
-        print("Error")
+        print("Could not understand")
+
     if command in ["quit","good bye" , "ok bye", "exit"]:
         global running
         running=False
@@ -47,7 +48,7 @@ def initSpeech():
 
 
 
-
+initSpeech()
 
 
 
